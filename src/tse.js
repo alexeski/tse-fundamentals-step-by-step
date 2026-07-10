@@ -283,14 +283,37 @@ const renderSpotter = (searchQuery = "top selling products") => {
 
 const renderLiveboard = () => {
   clearEmbedContainer(viewToContainer.liveboard);
+  const dashboardDownloadActions = [
+    Action.Download,
+    Action.DownloadData,
+    Action.DownloadAsCsv,
+    Action.DownloadAsPdf,
+    Action.DownloadAsPng,
+    Action.DownloadAsXlsx,
+  ].filter(Boolean);
+  const proVisibleActions = [
+    Action.Explore,
+    Action.DrillDown,
+    Action.CrossFilter,
+    Action.RemoveCrossFilter,
+    Action.ShowUnderlyingData,
+    Action.CopyLink,
+    Action.Present,
+    Action.ShareViz,
+  ].filter(Boolean);
   const liveboardPlanControls = isEnterpriseUser()
     ? {
-        primaryAction: Action.Explore,
+        // primaryAction: Action.SpotterViz,
       }
     : {
         primaryAction: Action.Explore,
-        disabledActions: [Action.SpotterViz],
-        disabledActionReason: "Upgrade to Enterprise to unlock Spotter",
+        visibleActions: proVisibleActions,
+        disabledActions: [
+          Action.SpotterViz,
+          ...dashboardDownloadActions,
+        ],
+        disabledActionReason:
+          "Upgrade to Enterprise to unlock Spotter actions, Data Alerts, and dashboard downloads.",
       };
   const embed = new LiveboardEmbed(viewToContainer.liveboard, {
     ...getEmbedThemeOptions(),
@@ -390,7 +413,6 @@ const syncUserUi = () => {
   const userLabel = document.getElementById("current-user-label");
   const usageLabel = document.getElementById("plan-usage-label");
   const ctaBtn = document.getElementById("plan-cta-btn");
-  const spotterVizFeatureBadge = document.getElementById("spotterviz-feature-badge");
   if (avatar) avatar.textContent = user.initials;
   if (planPill) {
     planPill.textContent = user.plan === "enterprise" ? "Enterprise" : "Pro";
@@ -406,11 +428,6 @@ const syncUserUi = () => {
       user.plan === "enterprise"
         ? "Enterprise plan active"
         : "Upgrade to Enterprise";
-  }
-  if (spotterVizFeatureBadge) {
-    const enterprise = user.plan === "enterprise";
-    spotterVizFeatureBadge.textContent = enterprise ? "Enabled" : "Enterprise";
-    spotterVizFeatureBadge.classList.toggle("locked", !enterprise);
   }
   syncVisualizationLockState();
 };

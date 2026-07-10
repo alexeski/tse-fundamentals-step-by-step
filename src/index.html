@@ -7,13 +7,26 @@
     <link rel="stylesheet" href="tse.css" />
   </head>
   <body>
+    <div class="app-bg-glow app-bg-glow-1"></div>
+    <div class="app-bg-glow app-bg-glow-2"></div>
     <div class="app-shell">
       <header class="topbar">
         <div class="brand">
-          <div class="brand-mark">A</div>
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="img">
+              <defs>
+                <linearGradient id="acmeLogoGradient" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#69d1ff"></stop>
+                  <stop offset="100%" stop-color="#6f7dff"></stop>
+                </linearGradient>
+              </defs>
+              <path d="M8 48 27 10h10l19 38h-9l-4-9H21l-4 9z" fill="url(#acmeLogoGradient)"></path>
+              <path d="M24 31h16l-8-16z" fill="#ffffff" fill-opacity="0.9"></path>
+            </svg>
+          </div>
           <div>
             <p class="brand-title">Acme Insights Portal</p>
-            <p class="brand-subtitle">Revenue and Account Intelligence</p>
+            <p class="brand-subtitle">Revenue Intelligence Cloud</p>
           </div>
         </div>
         <div class="topbar-actions">
@@ -209,15 +222,22 @@
           <section id="monetization-view" class="view">
             <div class="page-head">
               <h1>Monetization and Packaging</h1>
-              <p>Demonstrate how analytics capabilities can be packaged and sold by plan tier.</p>
+              <p>Compare feature access clearly across plans and highlight Enterprise-only value drivers.</p>
             </div>
+            <article class="panel monetization-callout">
+              <h2>Enterprise Growth Drivers</h2>
+              <p>
+                Data Alerts, AI Analyst Spotter actions, and dashboard data/image downloads are Enterprise-only capabilities designed
+                for operational teams that need proactive and governed analytics at scale.
+              </p>
+            </article>
             <div class="pricing-grid">
               <article class="panel">
                 <h2>Free</h2>
                 <p class="price">$0</p>
                 <ul class="simple-list">
                   <li>View-only dashboard access</li>
-                  <li>Limited Spotter prompts</li>
+                  <li>No Spotter prompts</li>
                   <li>Email support</li>
                 </ul>
               </article>
@@ -232,26 +252,50 @@
               </article>
               <article class="panel">
                 <h2>Enterprise</h2>
-                <p class="price">Custom</p>
+                <p class="price">Contact us</p>
                 <ul class="simple-list">
                   <li>Advanced governance and SSO</li>
                   <li>Premium AI explainability</li>
                   <li>Interactive SpotterViz actions on Liveboards</li>
+                  <li>Data Downloads</li>
+                  <li>Data Alerts</li>
                   <li>Dedicated success manager</li>
                 </ul>
               </article>
             </div>
-            <article class="panel">
-              <h2>Feature access map</h2>
-              <ul class="feature-list">
-                <li><span>Spotter conversational analysis</span><span class="badge">Pro</span></li>
-                <li><span>Natural language explainability chain</span><span class="badge locked">Enterprise</span></li>
-                <li><span>Account benchmark liveboard packs</span><span class="badge">Free</span></li>
-                <li>
-                  <span id="spotterviz-feature-label">Liveboard SpotterViz actions</span>
-                  <span id="spotterviz-feature-badge" class="badge locked">Enterprise</span>
-                </li>
-              </ul>
+            <article class="panel feature-compare-panel">
+              <h2>Feature comparison</h2>
+              <div class="feature-compare-grid">
+                <div class="compare-head">Capability</div>
+                <div class="compare-head">Free</div>
+                <div class="compare-head">Pro</div>
+                <div class="compare-head">Enterprise</div>
+
+                <div class="compare-label">Spotter conversational analysis</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell">Limited</div>
+                <div class="compare-cell is-yes">Full</div>
+
+                <div class="compare-label">AI Analyst Spotter actions on Liveboard</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-yes">Yes</div>
+
+                <div class="compare-label">Dashboard data and image downloads</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-yes">Yes</div>
+
+                <div class="compare-label">Data Alerts</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-yes">Yes</div>
+
+                <div class="compare-label">Natural language explainability chain</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-no">No</div>
+                <div class="compare-cell is-yes">Yes</div>
+              </div>
               <button class="primary-btn" type="button">Request enterprise quote</button>
             </article>
           </section>
