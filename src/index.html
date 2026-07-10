@@ -2,28 +2,261 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>TS Embedded</title>
-    <link rel="icon" href="images/TS.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acme Insights Portal</title>
     <link rel="stylesheet" href="tse.css" />
   </head>
   <body>
-    <h1>ThoughtSpot Embedded: Step-by-Step</h1>
-    <!-- header links.  You'll add additional links here as you add functionality. -->
-    <div id="div-nav-links">
-      <ul id="ul-nav-links">
-        <li id="search-link">Search</li>
-        <li>|</li>
-        <li id="spotter-link">Natural Language</li>
-        <li>|</li>
-        <li id="Liveboard-link">Dashboard</li>
-        <li>|</li>
-        <li id="liveboard-viz-link">Visualization</li>
-        <li>|</li>
-        <li id="full-app-link">Application</li>
-      </ul>
-    </div>
-    <div id="embed">
-      <p>This content will be replaced by your embedded content.</p>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">A</div>
+          <div>
+            <p class="brand-title">Acme Insights Portal</p>
+            <p class="brand-subtitle">Revenue and Account Intelligence</p>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <label class="tenant-picker">
+            <span>Tenant</span>
+            <select id="tenant-select">
+              <option>North America</option>
+              <option>EMEA</option>
+              <option>APAC</option>
+            </select>
+          </label>
+          <button
+            id="theme-toggle"
+            class="ghost-btn theme-toggle-btn"
+            type="button"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            <span class="theme-icon" aria-hidden="true">
+              <span class="sun-icon"></span>
+              <span class="moon-icon"></span>
+            </span>
+          </button>
+          <span id="plan-pill" class="badge">Pro</span>
+          <button
+            id="user-switch"
+            class="avatar-btn"
+            type="button"
+            title="Switch user"
+            aria-label="Switch user"
+          >
+            AL
+          </button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <p class="sidebar-heading">Navigation</p>
+          <button class="nav-item active" data-view="overview" type="button">
+            Overview
+          </button>
+          <button class="nav-item" data-view="spotter" type="button">
+            AI Analyst
+          </button>
+          <button class="nav-item" data-view="search" type="button">
+            Self-Service Search
+          </button>
+          <button class="nav-item" data-view="liveboard" type="button">
+            Executive Dashboards
+          </button>
+          <button class="nav-item" data-view="visualization" type="button">
+            Insight Tile
+          </button>
+          <button class="nav-item" data-view="application" type="button">
+            Analyst Workspace
+          </button>
+          <button class="nav-item" data-view="monetization" type="button">
+            Monetization
+          </button>
+
+          <div class="sidebar-card">
+            <p class="card-label">Current plan</p>
+            <p id="current-plan-value" class="card-value">Pro</p>
+            <p id="current-user-label" class="card-muted">Alice Lee - Revenue Manager</p>
+            <p id="plan-usage-label" class="card-muted">Usage: 68% of monthly analytics credits</p>
+            <button id="plan-cta-btn" class="primary-btn" type="button">Upgrade to Enterprise</button>
+          </div>
+        </aside>
+
+        <main class="main">
+          <section id="overview-view" class="view is-visible">
+            <div class="page-head">
+              <h1>Revenue control center</h1>
+              <p>Track account health, identify growth opportunities, and operationalize AI-assisted decisions.</p>
+            </div>
+            <div class="kpi-grid">
+              <article class="panel">
+                <p class="kpi-label">Quarter Revenue</p>
+                <p class="kpi-value">$55.2M</p>
+                <p class="kpi-delta positive">+12.4% vs prior quarter</p>
+              </article>
+              <article class="panel">
+                <p class="kpi-label">Active Accounts</p>
+                <p class="kpi-value">13,018</p>
+                <p class="kpi-delta positive">+4.8% growth</p>
+              </article>
+              <article class="panel">
+                <p class="kpi-label">Pipeline Coverage</p>
+                <p class="kpi-value">3.1x</p>
+                <p class="kpi-delta">Stable</p>
+              </article>
+              <article class="panel lock-panel">
+                <div class="row-between">
+                  <p class="kpi-label">Forecast Explainability</p>
+                  <span class="badge locked">Enterprise</span>
+                </div>
+                <p class="kpi-value">Locked</p>
+                <p class="kpi-delta">Upgrade to unlock account-level AI diagnostics.</p>
+              </article>
+            </div>
+
+            <div class="content-grid">
+              <article class="panel">
+                <h2>Recent insights</h2>
+                <ul class="simple-list">
+                  <li>Churn risk increased in Mid-Market Retail over last 14 days.</li>
+                  <li>Top 20 enterprise accounts grew 9% after discount policy change.</li>
+                  <li>Consumer electronics margin compressed due to freight costs.</li>
+                </ul>
+              </article>
+              <article class="panel">
+                <h2>AI workflow playbook</h2>
+                <ol class="simple-list">
+                  <li>Ask Spotter for hypothesis generation.</li>
+                  <li>Validate with Search and dashboard slice-and-dice.</li>
+                  <li>Share findings with account team.</li>
+                  <li>Execute action plan and monitor impact.</li>
+                </ol>
+              </article>
+              <article class="panel">
+                <h2>Data freshness</h2>
+                <p class="info-line">Sales pipeline sync: 14 minutes ago</p>
+                <p class="info-line">ERP margin feed: 27 minutes ago</p>
+                <p class="info-line">CRM account hierarchy: 9 minutes ago</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="spotter-view" class="view">
+            <div class="page-head">
+              <h1>AI Analyst</h1>
+              <p>Use conversational analytics to investigate revenue, margin, and account performance questions.</p>
+            </div>
+            <div class="workflow-strip">
+              <article class="workflow-step"><h3>1. Ask</h3><p>Start with a natural language question.</p></article>
+              <article class="workflow-step"><h3>2. Validate</h3><p>Review source metrics and assumptions.</p></article>
+              <article class="workflow-step"><h3>3. Share</h3><p>Create stakeholder-ready summaries.</p></article>
+              <article class="workflow-step"><h3>4. Act</h3><p>Turn insight into account actions.</p></article>
+            </div>
+            <div class="chip-row" id="spotter-prompts">
+              <button class="chip" data-prompt="Which accounts drove revenue growth last quarter?">Growth drivers</button>
+              <button class="chip" data-prompt="What products have declining margin in enterprise accounts?">Margin decline</button>
+              <button class="chip" data-prompt="Show churn risk trends by segment and region.">Churn risk trend</button>
+            </div>
+            <div id="embed" class="embed-container"></div>
+          </section>
+
+          <section id="search-view" class="view">
+            <div class="page-head">
+              <h1>Self-Service Search</h1>
+              <p>Empower account teams to run ad hoc analytics without waiting for analysts.</p>
+            </div>
+            <div class="tier-banner">
+              <p><strong>Pro feature:</strong> unlimited saved answers and guided prompts are included.</p>
+            </div>
+            <div id="search-embed" class="embed-container"></div>
+          </section>
+
+          <section id="liveboard-view" class="view">
+            <div class="page-head">
+              <h1>Executive Dashboards</h1>
+              <p>Monitor KPI trends, account cohorts, and region performance in a centralized liveboard.</p>
+            </div>
+            <div id="liveboard-embed" class="embed-container"></div>
+          </section>
+
+          <section id="visualization-view" class="view">
+            <div class="page-head">
+              <h1>Insight Tile</h1>
+              <p>Embed a focused visualization into operational workflows for faster action.</p>
+            </div>
+            <div class="tier-banner locked-banner">
+              <p id="insight-tier-message"><strong>Enterprise feature:</strong> embedded action workflows on individual visualizations.</p>
+            </div>
+            <div class="embed-wrap">
+              <div id="viz-embed" class="embed-container"></div>
+              <div id="viz-locked-overlay" class="viz-locked-overlay">
+                <p class="overlay-title">Enterprise lincense required</p>
+                <p class="overlay-copy">Please contact your account manager to upgrade.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="application-view" class="view">
+            <div class="page-head">
+              <h1>Analyst Workspace</h1>
+              <p>Open the full ThoughtSpot application experience within the Acme portal shell.</p>
+            </div>
+            <div id="app-embed" class="embed-container"></div>
+          </section>
+
+          <section id="monetization-view" class="view">
+            <div class="page-head">
+              <h1>Monetization and Packaging</h1>
+              <p>Demonstrate how analytics capabilities can be packaged and sold by plan tier.</p>
+            </div>
+            <div class="pricing-grid">
+              <article class="panel">
+                <h2>Free</h2>
+                <p class="price">$0</p>
+                <ul class="simple-list">
+                  <li>View-only dashboard access</li>
+                  <li>Limited Spotter prompts</li>
+                  <li>Email support</li>
+                </ul>
+              </article>
+              <article class="panel highlighted">
+                <h2>Pro</h2>
+                <p class="price">$499 / month</p>
+                <ul class="simple-list">
+                  <li>Full Search + Spotter</li>
+                  <li>Insight tile view only (no SpotterViz actions)</li>
+                  <li>Team sharing workflows</li>
+                </ul>
+              </article>
+              <article class="panel">
+                <h2>Enterprise</h2>
+                <p class="price">Custom</p>
+                <ul class="simple-list">
+                  <li>Advanced governance and SSO</li>
+                  <li>Premium AI explainability</li>
+                  <li>Interactive SpotterViz actions on Liveboards</li>
+                  <li>Dedicated success manager</li>
+                </ul>
+              </article>
+            </div>
+            <article class="panel">
+              <h2>Feature access map</h2>
+              <ul class="feature-list">
+                <li><span>Spotter conversational analysis</span><span class="badge">Pro</span></li>
+                <li><span>Natural language explainability chain</span><span class="badge locked">Enterprise</span></li>
+                <li><span>Account benchmark liveboard packs</span><span class="badge">Free</span></li>
+                <li>
+                  <span id="spotterviz-feature-label">Liveboard SpotterViz actions</span>
+                  <span id="spotterviz-feature-badge" class="badge locked">Enterprise</span>
+                </li>
+              </ul>
+              <button class="primary-btn" type="button">Request enterprise quote</button>
+            </article>
+          </section>
+        </main>
+      </div>
     </div>
     <script src="tse.js" type="module"></script>
   </body>
