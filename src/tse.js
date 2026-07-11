@@ -74,12 +74,24 @@ function initAnalyticsEngine() {
   init({
     thoughtSpotHost: tsURL,
     authType: AuthType.None,
-    customizations: { style: { customCSS: { variables: themeVariables[currentTheme()] } } },
+    customizations: {
+      style: { customCSS: { variables: themeVariables[currentTheme()] } },
+      content: {
+        strings: {
+          "Meet Spotter, your AI analyst": "Ask Compass AI anything",
+        },
+      },
+    },
   });
 }
 
 function embedOptions() {
-  return { frameParams: {}, customizations: { style: { customCSS: { variables: themeVariables[currentTheme()] } } } };
+  return {
+    frameParams: {},
+    customizations: {
+      style: { customCSS: { variables: themeVariables[currentTheme()] } },
+    },
+  };
 }
 
 function renderAnalyticsHub() {
@@ -113,7 +125,9 @@ function renderHealthKpis() {
   });
 }
 
-function renderAskCompass(query = "Which customers have the highest churn risk this quarter?") {
+function renderAskCompass(
+  query = "Which customers have the highest churn risk this quarter?",
+) {
   const container = document.querySelector("#spotterEmbed");
   if (!container) return;
   container.innerHTML = "";
@@ -134,7 +148,10 @@ function renderExploreData() {
     ...embedOptions(),
     collapseDataSources: true,
     dataSource: worksheetId,
-    searchOptions: { searchTokenString: "[Win Rate] by [product type] [date]", executeSearch: true },
+    searchOptions: {
+      searchTokenString: "[Win Rate] by [product type] [date]",
+      executeSearch: true,
+    },
     hiddenActions: [Action.Share].filter(Boolean),
   }).render();
 }
@@ -151,16 +168,35 @@ function renderViewEmbed(view, force = false) {
 
 function setActiveView(view) {
   activeView = view;
-  document.querySelectorAll(".nav-item").forEach((button) => button.classList.toggle("active", button.dataset.view === view));
-  document.querySelectorAll(".view").forEach((section) => section.classList.remove("is-visible"));
+  document
+    .querySelectorAll(".nav-item")
+    .forEach((button) =>
+      button.classList.toggle("active", button.dataset.view === view),
+    );
+  document
+    .querySelectorAll(".view")
+    .forEach((section) => section.classList.remove("is-visible"));
   document.querySelector(`#${view}-view`)?.classList.add("is-visible");
-  document.querySelector("#viewTitle").textContent = viewTitles[view] || "Acme Compass";
+  document.querySelector("#viewTitle").textContent =
+    viewTitles[view] || "Acme Compass";
   renderViewEmbed(view);
 }
 
 function bindNavigation() {
-  document.querySelectorAll("[data-view]").forEach((button) => button.addEventListener("click", () => setActiveView(button.dataset.view)));
-  document.querySelectorAll("[data-jump]").forEach((button) => button.addEventListener("click", () => setActiveView(button.dataset.jump)));
+  document
+    .querySelectorAll("[data-view]")
+    .forEach((button) =>
+      button.addEventListener("click", () =>
+        setActiveView(button.dataset.view),
+      ),
+    );
+  document
+    .querySelectorAll("[data-jump]")
+    .forEach((button) =>
+      button.addEventListener("click", () =>
+        setActiveView(button.dataset.jump),
+      ),
+    );
 }
 
 function bindTenant() {
@@ -170,12 +206,14 @@ function bindTenant() {
     const tenant = tenantSelect.value;
     tenantSmall.textContent = tenant;
     viewTitles.home = `Welcome back, ${tenant}`;
-    if (activeView === "home") document.querySelector("#viewTitle").textContent = viewTitles.home;
+    if (activeView === "home")
+      document.querySelector("#viewTitle").textContent = viewTitles.home;
   });
 }
 
 function bindTheme() {
-  document.documentElement.dataset.theme = localStorage.getItem("acme-compass-theme") || "light";
+  document.documentElement.dataset.theme =
+    localStorage.getItem("acme-compass-theme") || "light";
   document.querySelector("#themeToggle")?.addEventListener("click", () => {
     const next = currentTheme() === "light" ? "dark" : "light";
     document.documentElement.dataset.theme = next;
@@ -204,4 +242,3 @@ window.addEventListener("DOMContentLoaded", () => {
   bindPromptChips();
   setActiveView("home");
 });
-
