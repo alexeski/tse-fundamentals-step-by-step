@@ -3,305 +3,165 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Acme Insights Portal</title>
+    <title>Acme Compass Client Portal</title>
     <link rel="stylesheet" href="tse.css" />
   </head>
   <body>
-    <div class="app-bg-glow app-bg-glow-1"></div>
-    <div class="app-bg-glow app-bg-glow-2"></div>
     <div class="app-shell">
-      <header class="topbar">
+      <aside class="sidebar" aria-label="Client portal navigation">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64" role="img">
-              <defs>
-                <linearGradient id="acmeLogoGradient" x1="0" x2="1" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#69d1ff"></stop>
-                  <stop offset="100%" stop-color="#6f7dff"></stop>
-                </linearGradient>
-              </defs>
-              <path d="M8 48 27 10h10l19 38h-9l-4-9H21l-4 9z" fill="url(#acmeLogoGradient)"></path>
-              <path d="M24 31h16l-8-16z" fill="#ffffff" fill-opacity="0.9"></path>
-            </svg>
-          </div>
+          <div class="brand-mark" aria-hidden="true">A</div>
           <div>
-            <p class="brand-title">Acme Insights Portal</p>
-            <p class="brand-subtitle">Revenue Intelligence Cloud</p>
+            <p class="brand-name">Acme Compass</p>
+            <p class="brand-sub">Customer operations cloud</p>
           </div>
         </div>
-        <div class="topbar-actions">
-          <label class="tenant-picker">
-            <span>Tenant</span>
-            <select id="tenant-select">
-              <option>North America</option>
-              <option>EMEA</option>
-              <option>APAC</option>
-            </select>
-          </label>
-          <button
-            id="theme-toggle"
-            class="ghost-btn theme-toggle-btn"
-            type="button"
-            aria-label="Toggle theme"
-            title="Toggle theme"
-          >
-            <span class="theme-icon" aria-hidden="true">
-              <span class="sun-icon"></span>
-              <span class="moon-icon"></span>
-            </span>
-          </button>
-          <span id="plan-pill" class="badge">Pro</span>
-          <button
-            id="user-switch"
-            class="avatar-btn"
-            type="button"
-            title="Switch user"
-            aria-label="Switch user"
-          >
-            AL
-          </button>
-        </div>
-      </header>
 
-      <div class="layout">
-        <aside class="sidebar">
-          <p class="sidebar-heading">Navigation</p>
-          <button class="nav-item active" data-view="overview" type="button">
-            Overview
-          </button>
-          <button class="nav-item" data-view="spotter" type="button">
-            AI Analyst
-          </button>
-          <button class="nav-item" data-view="search" type="button">
-            Self-Service Search
-          </button>
-          <button class="nav-item" data-view="liveboard" type="button">
-            Executive Dashboards
-          </button>
-          <button class="nav-item" data-view="visualization" type="button">
-            Insight Tile
-          </button>
-          <button class="nav-item" data-view="application" type="button">
-            Analyst Workspace
-          </button>
-          <button class="nav-item" data-view="monetization" type="button">
-            Monetization
-          </button>
+        <nav class="nav-list">
+          <button class="nav-item active" type="button" data-view="home">Home</button>
+          <button class="nav-item" type="button" data-view="health">Customer Health</button>
+          <button class="nav-item" type="button" data-view="analytics">Analytics Hub</button>
+          <button class="nav-item" type="button" data-view="ask">Ask Compass AI</button>
+          <button class="nav-item" type="button" data-view="explore">Explore Data</button>
+          <button class="nav-item" type="button" data-view="monetize">Plans & Add-ons</button>
+          <button class="nav-item" type="button" data-view="admin">Admin</button>
+        </nav>
 
-          <div class="sidebar-card">
-            <p class="card-label">Current plan</p>
-            <p id="current-plan-value" class="card-value">Pro</p>
-            <p id="current-user-label" class="card-muted">Alice Lee - Revenue Manager</p>
-            <p id="plan-usage-label" class="card-muted">Usage: 68% of monthly analytics credits</p>
-            <button id="plan-cta-btn" class="primary-btn" type="button">Upgrade to Enterprise</button>
+        <section class="account-card">
+          <p class="eyebrow">Signed in as</p>
+          <div class="account-row">
+            <span class="avatar">NS</span>
+            <div>
+              <strong id="tenantNameSmall">Northstar Bank</strong>
+              <span>Enterprise client</span>
+            </div>
           </div>
-        </aside>
+          <div class="plan-meter">
+            <span>Analytics usage</span>
+            <strong>74%</strong>
+          </div>
+          <div class="meter"><span style="width:74%"></span></div>
+        </section>
+      </aside>
 
-        <main class="main">
-          <section id="overview-view" class="view is-visible">
-            <div class="page-head">
-              <h1>Revenue control center</h1>
-              <p>Track account health, identify growth opportunities, and operationalize AI-assisted decisions.</p>
-            </div>
-            <div class="kpi-grid">
-              <article class="panel">
-                <p class="kpi-label">Quarter Revenue</p>
-                <p class="kpi-value">$55.2M</p>
-                <p class="kpi-delta positive">+12.4% vs prior quarter</p>
-              </article>
-              <article class="panel">
-                <p class="kpi-label">Active Accounts</p>
-                <p class="kpi-value">13,018</p>
-                <p class="kpi-delta positive">+4.8% growth</p>
-              </article>
-              <article class="panel">
-                <p class="kpi-label">Pipeline Coverage</p>
-                <p class="kpi-value">3.1x</p>
-                <p class="kpi-delta">Stable</p>
-              </article>
-              <article class="panel lock-panel">
-                <div class="row-between">
-                  <p class="kpi-label">Forecast Explainability</p>
-                  <span class="badge locked">Enterprise</span>
-                </div>
-                <p class="kpi-value">Locked</p>
-                <p class="kpi-delta">Upgrade to unlock account-level AI diagnostics.</p>
-              </article>
-            </div>
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Client workspace</p>
+            <h1 id="viewTitle">Welcome back, Northstar Bank</h1>
+          </div>
+          <div class="top-actions">
+            <label class="tenant-select">Client
+              <select id="tenantSelect">
+                <option value="Northstar Bank">Northstar Bank</option>
+                <option value="Mason Health">Mason Health</option>
+                <option value="Orbit Retail">Orbit Retail</option>
+              </select>
+            </label>
+            <button id="themeToggle" class="icon-btn" type="button" title="Theme" aria-label="Toggle theme">T</button>
+          </div>
+        </header>
 
-            <div class="content-grid">
-              <article class="panel">
-                <h2>Recent insights</h2>
-                <ul class="simple-list">
-                  <li>Churn risk increased in Mid-Market Retail over last 14 days.</li>
-                  <li>Top 20 enterprise accounts grew 9% after discount policy change.</li>
-                  <li>Consumer electronics margin compressed due to freight costs.</li>
-                </ul>
-              </article>
-              <article class="panel">
-                <h2>AI workflow playbook</h2>
-                <ol class="simple-list">
-                  <li>Ask Spotter for hypothesis generation.</li>
-                  <li>Validate with Search and dashboard slice-and-dice.</li>
-                  <li>Share findings with account team.</li>
-                  <li>Execute action plan and monitor impact.</li>
-                </ol>
-              </article>
-              <article class="panel">
-                <h2>Data freshness</h2>
-                <p class="info-line">Sales pipeline sync: 14 minutes ago</p>
-                <p class="info-line">ERP margin feed: 27 minutes ago</p>
-                <p class="info-line">CRM account hierarchy: 9 minutes ago</p>
-              </article>
-            </div>
-          </section>
-
-          <section id="spotter-view" class="view">
-            <div class="page-head">
-              <h1>AI Analyst</h1>
-              <p>Use conversational analytics to investigate revenue, margin, and account performance questions.</p>
-            </div>
-            <div class="workflow-strip">
-              <article class="workflow-step"><h3>1. Ask</h3><p>Start with a natural language question.</p></article>
-              <article class="workflow-step"><h3>2. Validate</h3><p>Review source metrics and assumptions.</p></article>
-              <article class="workflow-step"><h3>3. Share</h3><p>Create stakeholder-ready summaries.</p></article>
-              <article class="workflow-step"><h3>4. Act</h3><p>Turn insight into account actions.</p></article>
-            </div>
-            <div class="chip-row" id="spotter-prompts">
-              <button class="chip" data-prompt="Which accounts drove revenue growth last quarter?">Growth drivers</button>
-              <button class="chip" data-prompt="What products have declining margin in enterprise accounts?">Margin decline</button>
-              <button class="chip" data-prompt="Show churn risk trends by segment and region.">Churn risk trend</button>
-            </div>
-            <div id="embed" class="embed-container"></div>
-          </section>
-
-          <section id="search-view" class="view">
-            <div class="page-head">
-              <h1>Self-Service Search</h1>
-              <p>Empower account teams to run ad hoc analytics without waiting for analysts.</p>
-            </div>
-            <div class="tier-banner">
-              <p><strong>Pro feature:</strong> unlimited saved answers and guided prompts are included.</p>
-            </div>
-            <div id="search-embed" class="embed-container"></div>
-          </section>
-
-          <section id="liveboard-view" class="view">
-            <div class="page-head">
-              <h1>Executive Dashboards</h1>
-              <p>Monitor KPI trends, account cohorts, and region performance in a centralized liveboard.</p>
-            </div>
-            <div id="liveboard-embed" class="embed-container"></div>
-          </section>
-
-          <section id="visualization-view" class="view">
-            <div class="page-head">
-              <h1>Insight Tile</h1>
-              <p>Embed a focused visualization into operational workflows for faster action.</p>
-            </div>
-            <div class="tier-banner locked-banner">
-              <p id="insight-tier-message"><strong>Enterprise feature:</strong> embedded action workflows on individual visualizations.</p>
-            </div>
-            <div class="embed-wrap">
-              <div id="viz-embed" class="embed-container"></div>
-              <div id="viz-locked-overlay" class="viz-locked-overlay">
-                <p class="overlay-title">Enterprise lincense required</p>
-                <p class="overlay-copy">Please contact your account manager to upgrade.</p>
+        <section id="home-view" class="view is-visible">
+          <div class="home-grid">
+            <article class="hero-product">
+              <div>
+                <p class="eyebrow">Acme Compass Intelligence</p>
+                <h2>Your operating system for customer performance.</h2>
+                <p>Monitor adoption, revenue exposure, service demand, and expansion signals from a single client portal.</p>
               </div>
-            </div>
-          </section>
-
-          <section id="application-view" class="view">
-            <div class="page-head">
-              <h1>Analyst Workspace</h1>
-              <p>Open the full ThoughtSpot application experience within the Acme portal shell.</p>
-            </div>
-            <div id="app-embed" class="embed-container"></div>
-          </section>
-
-          <section id="monetization-view" class="view">
-            <div class="page-head">
-              <h1>Monetization and Packaging</h1>
-              <p>Compare feature access clearly across plans and highlight Enterprise-only value drivers.</p>
-            </div>
-            <article class="panel monetization-callout">
-              <h2>Enterprise Growth Drivers</h2>
-              <p>
-                Data Alerts, AI Analyst Spotter actions, and dashboard data/image downloads are Enterprise-only capabilities designed
-                for operational teams that need proactive and governed analytics at scale.
-              </p>
+              <button class="primary-btn" type="button" data-jump="ask">Ask Compass AI</button>
             </article>
-            <div class="pricing-grid">
-              <article class="panel">
-                <h2>Free</h2>
-                <p class="price">$0</p>
-                <ul class="simple-list">
-                  <li>View-only dashboard access</li>
-                  <li>No Spotter prompts</li>
-                  <li>Email support</li>
-                </ul>
-              </article>
-              <article class="panel highlighted">
-                <h2>Pro</h2>
-                <p class="price">$499 / month</p>
-                <ul class="simple-list">
-                  <li>Full Search + Spotter</li>
-                  <li>Insight tile view only (no SpotterViz actions)</li>
-                  <li>Team sharing workflows</li>
-                </ul>
-              </article>
-              <article class="panel">
-                <h2>Enterprise</h2>
-                <p class="price">Contact us</p>
-                <ul class="simple-list">
-                  <li>Advanced governance and SSO</li>
-                  <li>Premium AI explainability</li>
-                  <li>Interactive SpotterViz actions on Liveboards</li>
-                  <li>Data Downloads</li>
-                  <li>Data Alerts</li>
-                  <li>Dedicated success manager</li>
-                </ul>
-              </article>
-            </div>
-            <article class="panel feature-compare-panel">
-              <h2>Feature comparison</h2>
-              <div class="feature-compare-grid">
-                <div class="compare-head">Capability</div>
-                <div class="compare-head">Free</div>
-                <div class="compare-head">Pro</div>
-                <div class="compare-head">Enterprise</div>
-
-                <div class="compare-label">Spotter conversational analysis</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell">Limited</div>
-                <div class="compare-cell is-yes">Full</div>
-
-                <div class="compare-label">AI Analyst Spotter actions on Liveboard</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-yes">Yes</div>
-
-                <div class="compare-label">Dashboard data and image downloads</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-yes">Yes</div>
-
-                <div class="compare-label">Data Alerts</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-yes">Yes</div>
-
-                <div class="compare-label">Natural language explainability chain</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-no">No</div>
-                <div class="compare-cell is-yes">Yes</div>
+            <article class="metric-card"><p>ARR monitored</p><strong>$12.4M</strong><span class="good">+8.6% this quarter</span></article>
+            <article class="metric-card"><p>At-risk revenue</p><strong>$1.8M</strong><span class="risk">3 accounts need action</span></article>
+            <article class="metric-card"><p>Adoption score</p><strong>78</strong><span class="good">+9 pts in 30 days</span></article>
+            <article class="metric-card"><p>Report tickets</p><strong>-31%</strong><span>Deflected by self-service</span></article>
+            <article class="panel span-2">
+              <div class="panel-head"><div><p class="eyebrow">Recommended actions</p><h3>What to do next</h3></div><button class="ghost-btn" type="button" data-jump="health">View health</button></div>
+              <div class="action-list">
+                <div><span class="dot red"></span><strong>Reduce churn risk in EMEA mid-market.</strong><p>Usage dropped across two product modules and onboarding milestones are late.</p></div>
+                <div><span class="dot amber"></span><strong>Offer Premium Insights add-on.</strong><p>Northstar users are repeatedly exporting dashboards and asking for proactive alerts.</p></div>
+                <div><span class="dot green"></span><strong>Share executive adoption benchmark.</strong><p>Compass analytics is ready for sponsor review without manual reporting work.</p></div>
               </div>
-              <button class="primary-btn" type="button">Request enterprise quote</button>
             </article>
-          </section>
-        </main>
-      </div>
+            <article class="panel">
+              <p class="eyebrow">Plan opportunity</p>
+              <h3>Premium Insights</h3>
+              <p>Unlock AI explanations, scheduled alerts, governed exports, and full exploratory analytics.</p>
+              <button class="primary-btn full" type="button" data-jump="monetize">Compare plans</button>
+            </article>
+          </div>
+        </section>
+
+        <section id="health-view" class="view">
+          <div class="section-head"><p class="eyebrow">Customer health</p><h2>Retention and growth signals</h2><p>Acme Compass combines usage, revenue, service, and sentiment into an executive-ready client health view.</p></div>
+          <div class="kpi-embed-grid">
+            <article class="kpi-embed-card"><div id="healthKpi1" class="kpi-embed"></div></article>
+            <article class="kpi-embed-card"><div id="healthKpi2" class="kpi-embed"></div></article>
+            <article class="kpi-embed-card"><div id="healthKpi3" class="kpi-embed"></div></article>
+            <article class="kpi-embed-card"><div id="healthKpi4" class="kpi-embed"></div></article>
+            <article class="kpi-embed-card"><div id="healthKpi5" class="kpi-embed"></div></article>
+            <article class="kpi-embed-card"><div id="healthKpi6" class="kpi-embed"></div></article>
+          </div>
+          <div class="health-grid">
+            <article class="panel"><h3>Risk drivers</h3><ul class="clean-list"><li>Login frequency down 18% in EMEA.</li><li>Implementation milestone slipped 12 days.</li><li>Support sentiment declined in two enterprise groups.</li></ul></article>
+            <article class="panel"><h3>Expansion drivers</h3><ul class="clean-list"><li>14 active power users are exploring analytics weekly.</li><li>Three teams requested scheduled alerts.</li><li>Exports indicate demand for governed offline workflows.</li></ul></article>
+            <article class="panel"><h3>Success motion</h3><ul class="clean-list"><li>Run AI churn investigation.</li><li>Share executive dashboard with sponsor.</li><li>Position Premium Insights for renewal.</li></ul></article>
+          </div>
+        </section>
+
+        <section id="analytics-view" class="view">
+          <div class="embed-header">
+            <div><p class="eyebrow">Analytics Hub</p><h2>Executive performance dashboard</h2><p>Embedded, tenant-scoped dashboards give customers a native Acme experience with drill paths and governed data access.</p></div>
+            <button class="ghost-btn" type="button" data-jump="monetize">Package this feature</button>
+          </div>
+          <div id="liveboardEmbed" class="embed-frame"></div>
+        </section>
+
+        <section id="ask-view" class="view">
+          <div class="embed-header">
+            <div><p class="eyebrow">Ask Compass AI</p><h2>AI answers inside the client workflow</h2><p>Customers ask natural-language questions against governed metrics, then validate and act without leaving the portal.</p></div>
+            <div class="prompt-chips"><button class="chip" type="button" data-prompt="Which customers have the highest churn risk this quarter?">Churn risk</button><button class="chip" type="button" data-prompt="What product adoption changed most in enterprise accounts?">Adoption change</button><button class="chip" type="button" data-prompt="Show expansion opportunities by customer segment.">Expansion</button></div>
+          </div>
+          <div id="spotterEmbed" class="embed-frame tall"></div>
+        </section>
+
+        <section id="explore-view" class="view">
+          <div class="embed-header">
+            <div><p class="eyebrow">Explore Data</p><h2>Self-service analytics for power users</h2><p>Reduce custom report tickets by letting customers search governed data with reusable metrics and access controls.</p></div>
+            <span class="plan-badge premium">Premium Insights</span>
+          </div>
+          <div id="searchEmbed" class="embed-frame tall"></div>
+        </section>
+
+        <section id="monetize-view" class="view">
+          <div class="section-head"><p class="eyebrow">Commercial packaging</p><h2>Turn analytics into product revenue</h2><p>Acme can package analytics capability by customer maturity, creating a clear upgrade path from visibility to AI-assisted operations.</p></div>
+          <div class="plans-grid">
+            <article class="plan-card"><p class="plan-name">Essentials</p><strong>Included</strong><ul><li>Read-only dashboards</li><li>Monthly PDF snapshots</li><li>Basic account health KPIs</li></ul><button class="ghost-btn full" type="button" data-jump="analytics">Preview dashboard</button></article>
+            <article class="plan-card featured"><p class="plan-name">Professional</p><strong>$499 / month</strong><ul><li>Interactive dashboards</li><li>Drill and filter workflows</li><li>Saved answers for teams</li><li>Usage analytics for admins</li></ul><button class="primary-btn full" type="button" data-jump="analytics">Open Analytics Hub</button></article>
+            <article class="plan-card"><p class="plan-name">Premium Insights</p><strong>Custom</strong><ul><li>Ask Compass AI</li><li>Self-service data exploration</li><li>Alerts and scheduled delivery</li><li>Governed downloads</li><li>Advanced tenant controls</li></ul><button class="primary-btn full" type="button" data-jump="ask">Try AI add-on</button></article>
+          </div>
+          <article class="feature-table panel">
+            <div class="feature-row head"><span>Capability</span><span>Essentials</span><span>Professional</span><span>Premium</span></div>
+            <div class="feature-row"><span>Embedded dashboards</span><span>View</span><span>Interactive</span><span>Interactive</span></div>
+            <div class="feature-row"><span>Natural-language AI analysis</span><span>No</span><span>Limited</span><span>Full</span></div>
+            <div class="feature-row"><span>Ad hoc data exploration</span><span>No</span><span>Curated</span><span>Full</span></div>
+            <div class="feature-row"><span>Alerts and scheduled delivery</span><span>No</span><span>No</span><span>Yes</span></div>
+            <div class="feature-row"><span>Governed downloads</span><span>No</span><span>Admin only</span><span>Yes</span></div>
+          </article>
+        </section>
+
+        <section id="admin-view" class="view">
+          <div class="section-head"><p class="eyebrow">Administration</p><h2>Tenant controls</h2><p>Acme admins manage customer access, packaging, and security rules at scale.</p></div>
+          <div class="admin-grid">
+            <article class="panel"><h3>Identity</h3><p>Single sign-on with role mapping for customer admins, sponsors, and analysts.</p><code>acme_role -> compass_group</code></article>
+            <article class="panel"><h3>Tenant isolation</h3><p>Client data is scoped by tenant and entitlement, with governed row and column access.</p><code>client_id = current_client</code></article>
+            <article class="panel"><h3>Provisioning</h3><p>Lifecycle automation creates users, groups, folders, and permissions when a client upgrades.</p><code>POST /clients/{id}/analytics-plan</code></article>
+          </div>
+        </section>
+      </main>
     </div>
     <script src="tse.js" type="module"></script>
   </body>
 </html>
+
