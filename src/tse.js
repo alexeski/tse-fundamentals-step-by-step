@@ -21,7 +21,7 @@ const healthKpis = [
 ];
 
 const viewTitles = {
-  home: "Welcome back, Northstar Bank",
+  home: "Welcome back, Jordan Lee",
   health: "Customer Health",
   analytics: "Analytics Hub",
   ask: "Ask Compass AI",
@@ -177,8 +177,6 @@ function setActiveView(view) {
     .querySelectorAll(".view")
     .forEach((section) => section.classList.remove("is-visible"));
   document.querySelector(`#${view}-view`)?.classList.add("is-visible");
-  document.querySelector("#viewTitle").textContent =
-    viewTitles[view] || "Acme Compass";
   renderViewEmbed(view);
 }
 
@@ -200,24 +198,56 @@ function bindNavigation() {
 }
 
 function bindTenant() {
-  const tenantSelect = document.querySelector("#tenantSelect");
+  const userSelect = document.querySelector("#userSelect");
   const tenantSmall = document.querySelector("#tenantNameSmall");
-  tenantSelect?.addEventListener("change", () => {
-    const tenant = tenantSelect.value;
-    tenantSmall.textContent = tenant;
-    viewTitles.home = `Welcome back, ${tenant}`;
-    if (activeView === "home")
-      document.querySelector("#viewTitle").textContent = viewTitles.home;
+  const avatar = document.querySelector(".avatar");
+  const userCycleBtn = document.querySelector("#userCycleBtn");
+
+  const applyUser = (user) => {
+    if (!user) return;
+    tenantSmall.textContent = user;
+    avatar.textContent = user
+      .split(" ")
+      .map((part) => part[0]?.toUpperCase() || "")
+      .join("")
+      .slice(0, 2);
+    viewTitles.home = `Welcome back, ${user}`;
+  };
+
+  // Keep select as the source of truth, but cycle users via icon click.
+  userCycleBtn?.addEventListener("click", () => {
+    if (!userSelect || userSelect.options.length === 0) return;
+    const nextIndex = (userSelect.selectedIndex + 1) % userSelect.options.length;
+    userSelect.selectedIndex = nextIndex;
+    userSelect.dispatchEvent(new Event("change"));
   });
+
+  userSelect?.addEventListener("change", () => {
+    applyUser(userSelect.value);
+  });
+
+  applyUser(userSelect?.value);
 }
 
 function bindTheme() {
+  const themeToggle = document.querySelector("#themeToggle");
+  const syncThemeIcon = () => {
+    if (!themeToggle) return;
+    const isDark = currentTheme() === "dark";
+    themeToggle.textContent = isDark ? "☀" : "☾";
+    themeToggle.title = isDark
+      ? "Switch to light theme"
+      : "Switch to dark theme";
+  };
+
   document.documentElement.dataset.theme =
     localStorage.getItem("acme-compass-theme") || "light";
-  document.querySelector("#themeToggle")?.addEventListener("click", () => {
+  syncThemeIcon();
+  themeToggle?.addEventListener("click", () => {
     const next = currentTheme() === "light" ? "dark" : "light";
     document.documentElement.dataset.theme = next;
     localStorage.setItem("acme-compass-theme", next);
+    syncThemeIcon();
     rendered.clear();
     renderViewEmbed(activeView, true);
   });
