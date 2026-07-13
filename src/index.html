@@ -33,7 +33,7 @@
             <span class="avatar">NS</span>
             <div>
               <strong id="tenantNameSmall">Jordan Lee</strong>
-              <span>Portal user</span>
+              <span id="userPlanStatusSmall">Pro plan - Ask Compass AI locked</span>
             </div>
           </div>
           <div class="plan-meter">
@@ -48,13 +48,13 @@
         <header class="topbar">
           <div class="top-actions">
             <button id="themeToggle" class="icon-btn" type="button" title="Toggle dark or light theme" aria-label="Toggle dark or light theme">◐</button>
+            <span id="userPlanPill" class="plan-pill locked">Pro</span>
             <label class="user-select" for="userSelect">
               <span class="visually-hidden">Switch user</span>
               <button id="userCycleBtn" class="icon-btn" type="button" title="Switch user" aria-label="Switch user">👤</button>
               <select id="userSelect" aria-label="Switch user">
-                <option value="Jordan Lee">Jordan Lee</option>
-                <option value="Avery Brooks">Avery Brooks</option>
-                <option value="Riley Morgan">Riley Morgan</option>
+                <option value="pro-user">Jordan Lee</option>
+                <option value="enterprise-user">Avery Brooks</option>
               </select>
             </label>
           </div>
@@ -119,9 +119,20 @@
         <section id="ask-view" class="view">
           <div class="embed-header">
             <div><p class="eyebrow">Ask Compass AI</p><h2>AI answers inside the client workflow</h2><p>Customers ask natural-language questions against governed metrics, then validate and act without leaving the portal.</p></div>
-            <div class="prompt-chips"><button class="chip" type="button" data-prompt="Which customers have the highest churn risk this quarter?">Churn risk</button><button class="chip" type="button" data-prompt="What product adoption changed most in enterprise accounts?">Adoption change</button><button class="chip" type="button" data-prompt="Show expansion opportunities by customer segment.">Expansion</button></div>
+            <div id="askPromptChips" class="prompt-chips"><button class="chip" type="button" data-prompt="Which customers have the highest churn risk this quarter?">Churn risk</button><button class="chip" type="button" data-prompt="What product adoption changed most in enterprise accounts?">Adoption change</button><button class="chip" type="button" data-prompt="Show expansion opportunities by customer segment.">Expansion</button></div>
           </div>
-          <div id="spotterEmbed" class="embed-frame tall"></div>
+          <div id="askAccessBanner" class="tier-banner locked-banner">
+            <p id="askAccessMessage"><strong>Enterprise feature:</strong> upgrade to unlock Ask Compass AI.</p>
+            <button id="askUpgradeBtn" class="primary-btn" type="button" data-jump="monetize">Upgrade to Enterprise</button>
+          </div>
+          <div class="embed-wrap">
+            <div id="spotterEmbed" class="embed-frame tall"></div>
+            <div id="askLockedOverlay" class="embed-locked-overlay">
+              <p class="overlay-title">Ask Compass AI is an Enterprise capability</p>
+              <p class="overlay-copy">Switch to an Enterprise user or upgrade this account to unlock conversational analytics.</p>
+              <button id="askOverlayUpgradeBtn" class="primary-btn" type="button" data-jump="monetize">View plans</button>
+            </div>
+          </div>
         </section>
 
         <section id="explore-view" class="view">
