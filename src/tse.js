@@ -153,9 +153,10 @@ function renderAnalyticsHub() {
     : {
         primaryAction: Action.Explore,
         visibleActions: proVisibleActions,
-        disabledActions: [Action.SpotterViz, ...dashboardDownloadActions].filter(
-          Boolean,
-        ),
+        disabledActions: [
+          Action.SpotterViz,
+          ...dashboardDownloadActions,
+        ].filter(Boolean),
         disabledActionReason:
           "Upgrade to Enterprise to unlock Spotter actions, Data Alerts, and dashboard downloads.",
       };
@@ -195,8 +196,9 @@ function renderAskCompass(query = "") {
   const spotterOptions = {
     ...embedOptions(),
     worksheetId,
-    hideSourceSelection: true,
-    disableSourceSelection: true,
+    updatedSpotterChatPrompt: true,
+    hideSourceSelection: false,
+    disableSourceSelection: false,
   };
   if (query?.trim()) {
     spotterOptions.searchOptions = { searchQuery: query };
@@ -327,7 +329,8 @@ function bindTenant() {
       .join("")
       .slice(0, 2);
     if (userPlanPill) {
-      userPlanPill.textContent = user.plan === "enterprise" ? "Enterprise" : "Pro";
+      userPlanPill.textContent =
+        user.plan === "enterprise" ? "Enterprise" : "Pro";
       userPlanPill.classList.toggle("locked", user.plan !== "enterprise");
     }
     if (userPlanStatusSmall) {
@@ -341,7 +344,8 @@ function bindTenant() {
   // Keep select as the source of truth, but cycle users via icon click.
   userCycleBtn?.addEventListener("click", () => {
     if (!userSelect || userSelect.options.length === 0) return;
-    const nextIndex = (userSelect.selectedIndex + 1) % userSelect.options.length;
+    const nextIndex =
+      (userSelect.selectedIndex + 1) % userSelect.options.length;
     userSelect.selectedIndex = nextIndex;
     userSelect.dispatchEvent(new Event("change"));
   });
