@@ -27,12 +27,14 @@ const users = [
     name: "Jordan Lee",
     plan: "pro",
     capabilityLabel: "Pro plan - Ask Compass AI locked",
+    usagePercent: 74,
   },
   {
     id: "enterprise-user",
     name: "Avery Brooks",
     plan: "enterprise",
     capabilityLabel: "Enterprise plan - Ask Compass AI unlocked",
+    usagePercent: 41,
   },
 ];
 
@@ -316,6 +318,8 @@ function bindTenant() {
   const userCycleBtn = document.querySelector("#userCycleBtn");
   const userPlanPill = document.querySelector("#userPlanPill");
   const userPlanStatusSmall = document.querySelector("#userPlanStatusSmall");
+  const planUsageValue = document.querySelector("#planUsageValue");
+  const planUsageBar = document.querySelector("#planUsageBar");
 
   const applyUser = (userId) => {
     const user = users.find((entry) => entry.id === userId) || users[0];
@@ -335,6 +339,12 @@ function bindTenant() {
     }
     if (userPlanStatusSmall) {
       userPlanStatusSmall.textContent = user.capabilityLabel;
+    }
+    if (planUsageValue) {
+      planUsageValue.textContent = `${user.usagePercent}%`;
+    }
+    if (planUsageBar) {
+      planUsageBar.style.width = `${user.usagePercent}%`;
     }
     syncAskAccessState();
     rendered.delete(activeView);
