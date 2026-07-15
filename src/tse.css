@@ -105,6 +105,8 @@ select { padding: 9px 10px; }
 .embed-header { margin-bottom: 10px; }
 .embed-header p { color: var(--muted); max-width: 820px; line-height: 1.45; }
 .prompt-chips { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; max-width: 520px; }
+#askPromptChips { margin-top: 10px; justify-content: flex-start; max-width: 820px; }
+#askPromptChips .chip { text-align: left; line-height: 1.35; }
 .tier-banner { margin: 0 0 10px; border: 1px dashed var(--line); border-radius: 8px; padding: 10px 12px; background: var(--surface-2); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .tier-banner p { margin: 0; color: var(--muted); }
 .locked-banner { border-color: color-mix(in oklab, var(--amber) 60%, var(--line)); background: color-mix(in oklab, var(--amber) 10%, var(--surface-2)); }
