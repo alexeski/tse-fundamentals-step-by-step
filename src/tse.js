@@ -84,6 +84,8 @@ const spotterIntroReplacement =
   "Compass AI is your AI analyst. It can answer questions you have about your data source and help you find insights quickly.\n\nTo start analyzing, ask a business question about your data.";
 
 const spotterStringOverrides = {
+  "Hi! I'm Spotter, your AI data analyst":
+    "Hi! I'm Compass AI, your AI data analyst.",
   "Meet Spotter, your AI analyst": "Ask Compass AI anything",
   "Spotter is your AI analyst. It can answer questions you have about your data source and help you find insights quickly.":
     "Compass AI is your AI analyst. It can answer questions you have about your data source and help you find insights quickly.",
