@@ -202,7 +202,7 @@ function renderAskCompass(query = "") {
     worksheetId,
     updatedSpotterChatPrompt: true,
     hideSourceSelection: false,
-    disableSourceSelection: false,
+    disableSourceSelection: true,
   };
   if (query?.trim()) {
     spotterOptions.searchOptions = { searchQuery: query };
